@@ -6,9 +6,11 @@ using System.IO;
 
 namespace DataGenerator
 {
-    class Program
+    public class Program
     {
         const int DataListCapacity = 1000;
+
+        public const string FilePath = "../../../products.csv";
 
         static void Main(string[] args)
         {
@@ -57,12 +59,7 @@ namespace DataGenerator
                     return;
                 }
 
-                var fileName = GiveFileName();
-
-                if (fileName == null)
-                    return;
-
-                using (var writer = new StreamWriter(fileName))
+                using (var writer = new StreamWriter(FilePath))
                 using (var csv = new CsvWriter(writer, CultureInfo.CurrentUICulture))
                 {
                     csv.WriteRecords(records);
@@ -76,18 +73,17 @@ namespace DataGenerator
             }
         }
 
-        private static string GiveFileName()
+        public static string GetFilePath()
         {
             try
             {
-                var formattedDateTimeString = DateTime.Now.ToString("yyyyMMddTHHmmss");
+                var path = "../../../products.csv";
 
-                string fileName = $"products_{formattedDateTimeString}.csv";
-                return fileName;
+                return path;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Не удалось записать данные:\n{ex}");
+                Console.WriteLine($"Не задать путь:\n{ex}");
 
                 return null;
             }
