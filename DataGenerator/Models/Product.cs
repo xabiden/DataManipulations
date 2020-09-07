@@ -1,5 +1,4 @@
-﻿using CsvHelper.Configuration.Attributes;
-using System;
+﻿using System;
 
 namespace DataGenerator.Models
 {

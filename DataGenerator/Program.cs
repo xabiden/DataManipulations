@@ -12,7 +12,7 @@ namespace DataGenerator
 
         public const string FilePath = "../../../products.csv";
 
-        static void Main(string[] args)
+        static void Main()
         {
             var records = InitializeRecords();
 
@@ -53,11 +53,7 @@ namespace DataGenerator
             try
             {
                 if ((records?.Length ?? 0) == 0)
-                {
-                    Console.WriteLine($"Массив полученных данных пуст или null");
-
                     return;
-                }
 
                 using (var writer = new StreamWriter(FilePath))
                 using (var csv = new CsvWriter(writer, CultureInfo.CurrentUICulture))
@@ -70,22 +66,6 @@ namespace DataGenerator
                 Console.WriteLine($"Не удалось записать данные:\n{ex}");
 
                 return;
-            }
-        }
-
-        public static string GetFilePath()
-        {
-            try
-            {
-                var path = "../../../products.csv";
-
-                return path;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Не задать путь:\n{ex}");
-
-                return null;
             }
         }
     }
